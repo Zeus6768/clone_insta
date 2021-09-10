@@ -1,0 +1,11 @@
+python -m venv (name)				# 가상환경 만들기
+source myvenv/scripts/activate			# 가상환경 실행
+deactivate					# 가상환경 종료
+pip install django				# Django 설치
+django-admin startproject projectname		# 새 프로젝트 생성
+python manage.py startapp appname		# 새 앱 생성
+python manage.py runserver			# 서버 실행
+python manage.py makemigrations			# migrations 만들기
+python manage.py migrate			# DB migrate
+python manage.py createsuperuser		# 관리자 계정 만들기
+python manage.py collectstatic			# static 파일 통합
