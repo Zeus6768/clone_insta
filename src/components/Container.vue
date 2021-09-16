@@ -1,26 +1,26 @@
 <template>
   <div>
     <div v-if="step == 0">
-      <Post :postdata="postdata[i]" v-for="(a, i) in postdata" :key="i"/>
+      <Post :postdata="postdata[i]" v-for="(a, i) in postdata" :key="i" :index="i">
+      </Post>
     </div>
 
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
-      <div class="upload-image"></div>
+      <div :class="selectedFilter" class="upload-image" :style="`background-image:url(${imageURL})`"></div>
+      <!-- <div class="upload-image" :style="{ backgroundImage:`url(${imageURL})` }"></div> -->
       <div class="filters">
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
+        <FilterBox :filter="filter" :imageURL="imageURL" v-for="filter in filters" :key="filter">
+          <span>{{filter}}</span>
+        </FilterBox>
       </div>
     </div>
 
     <!-- 글작성페이지 -->
     <div v-if="step == 2">
-      <div class="upload-image"></div>
+      <div :class="selectedFilter" class="upload-image" :style="`background-image:url(${imageURL})`"></div>
       <div class="write">
-        <textarea class="write-box">write!</textarea>
+        <textarea @input="$emit('write', $event.target.value)" class="write-box">write!</textarea>
       </div>
     </div>
   </div>
@@ -28,15 +28,28 @@
 
 <script>
 import Post from './Post.vue'
+import FilterBox from './FilterBox.vue'
 
 export default {
+  data() {
+    return {
+      filters : [ 
+        "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+        "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+        "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"
+      ],
+    }
+  },
   name : 'Container',
   components : {
     Post,
+    FilterBox,
   },
   props : {
     postdata : Array,
     step : Number,
+    imageURL : String,
+    selectedFilter : String,
   },
 }
 </script>

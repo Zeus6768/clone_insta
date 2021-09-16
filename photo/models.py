@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, update_last_login
+from django.urls import reverse
 from django.db import models
 
 # Create your models here.
@@ -10,8 +11,14 @@ class Photo(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return "text : " + self.text
-
     class Meta:
         ordering = ['-created']
+
+    def __str__(self):
+        if len(self.text) < 20:
+            return self.text
+        else:
+            return self.text[:20] + "..."
+
+    def get_absolute_url(self):
+        return reverse('photo:detail', args=[self.id])

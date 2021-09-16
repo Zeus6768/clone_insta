@@ -1,20 +1,30 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <li v-if="step==1" @click="step--">이전</li>
+      <li v-if="step==2" @click="step--">이전</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step==1" @click="step++">다음</li>
+      <li v-if="step==2" @click="publish">발행</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :postdata="postdata" :step="step"/>
-  <button @click="more">더보기</button>
+  <p>{{ name }} {{ age }} {{ likes }} {{ 작명 }}</p>
+
+  <h4>안녕 {{ $store.state.name }} {{ $store.state.age }}세!</h4>
+  <button @click="changeName()">이름변경</button>
+  <button @click="addAge(10)">나이변경</button>
+
+  <p>{{ $store.state.more }}</p>
+  <button @click="$store.dispatch('getData')">더보기</button>
+
+  <Container @write="newPostContent = $event" :postdata="postdata" :step="step" :imageURL="imageURL" :selectedFilter="selectedFilter" />
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" id="file" class="inputfile" accept="image/*"/>
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
@@ -25,6 +35,7 @@
 import Container from './components/Container.vue'
 import postdata from './assets/postdata.js'
 import axios from 'axios'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'App',
@@ -33,19 +44,55 @@ export default {
       step : 0,
       postdata : postdata,
       moreCount : 0,
-      
+      imageURL : "",
+      newPostContent : "",
+      selectedFilter : "",
+      counter : 0,
     }
+  },
+  mounted() {
+    this.emitter.on('filterSelect', (filter) => {
+      this.selectedFilter = filter
+    })
   },
   components: {
     Container,
   },
+  computed : {  // 계산 결과 저장용
+    ...mapState(['name', 'age', 'likes']),
+    ...mapState({ '작명' : 'name' }),
+  },
   methods : {
+    ...mapMutations(['setMore', 'changeName', 'addAge', 'likeOnOff']),
+
+    now() {
+      return new Date()
+    },
+    publish() {
+      const newPost = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.imageURL,
+        likes: 0,
+        date: "May 15",
+        liked: false,
+        content: this.newPostContent,
+        filter: this.selectedFilter,
+      };
+      this.postdata.unshift(newPost);
+      this.step = 0;
+    },
     more() {
       axios.get(`https://codingapple1.github.io/vue/more${this.moreCount}.json`)
       .then((result)=>{// get 요청 성공시 실행
         this.postdata.push(result.data);
         this.moreCount++;
       })
+    },
+    upload(e) {
+      let file = e.target.files;
+      this.imageURL = URL.createObjectURL(file[0]);
+      this.step = 1;
     },
   },
 }

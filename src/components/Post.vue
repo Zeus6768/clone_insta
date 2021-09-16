@@ -4,9 +4,9 @@
       <div class="profile"></div>
       <span class="profile-name">{{ postdata.name }}</span>
     </div>
-    <div class="post-body" :style="{ backgroundImage:`url(${postdata.postImage})`}"></div>
+    <div @click="$store.commit('likeOnOff', index)" :class="postdata.filter" class="post-body" :style="{ backgroundImage:`url(${postdata.postImage})` }"></div>
     <div class="post-content">
-      <p>{{postdata.likes}} Likes</p>
+      <p>{{ $store.state.likes[index] }} Likes</p>
       <p><strong>{{ postdata.name }}</strong> {{ postdata.content }}</p>
       <p class="date">{{ postdata.date }}</p>
     </div>
@@ -16,9 +16,9 @@
 <script>
 export default {
   name : 'Post',
-  components : {},
   props : {
     postdata: Object,
+    index : Number,
   }
 }
 </script>

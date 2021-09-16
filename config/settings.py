@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'photo',
+    'accounts',
     'webpack_loader',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -132,6 +133,8 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/res/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

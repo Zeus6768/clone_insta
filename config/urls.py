@@ -19,6 +19,6 @@ import photo.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("photo.urls"))
-    #path('', photo.views, name="home"),
+    path('', include("photo.urls")),
+    path('accounts/', include("accounts.urls")),
 ]
