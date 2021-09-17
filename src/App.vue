@@ -11,14 +11,14 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <p>{{ name }} {{ age }} {{ likes }} {{ 작명 }}</p>
+  <!-- <p>{{ name }} {{ age }} {{ likes }} {{ 작명 }}</p>
 
   <h4>안녕 {{ $store.state.name }} {{ $store.state.age }}세!</h4>
   <button @click="changeName()">이름변경</button>
   <button @click="addAge(10)">나이변경</button>
 
   <p>{{ $store.state.more }}</p>
-  <button @click="$store.dispatch('getData')">더보기</button>
+  <button @click="$store.dispatch('getData')">더보기</button> -->
 
   <Container @write="newPostContent = $event" :postdata="postdata" :step="step" :imageURL="imageURL" :selectedFilter="selectedFilter" />
 
@@ -39,9 +39,10 @@ import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'App',
+
   data() {
     return {
-      step : 0,
+      step : 3,
       postdata : postdata,
       moreCount : 0,
       imageURL : "",
@@ -50,21 +51,24 @@ export default {
       counter : 0,
     }
   },
+
   mounted() {
     this.emitter.on('filterSelect', (filter) => {
       this.selectedFilter = filter
     })
   },
+
   components: {
     Container,
   },
+
   computed : {  // 계산 결과 저장용
     ...mapState(['name', 'age', 'likes']),
     ...mapState({ '작명' : 'name' }),
   },
+
   methods : {
     ...mapMutations(['setMore', 'changeName', 'addAge', 'likeOnOff']),
-
     now() {
       return new Date()
     },
