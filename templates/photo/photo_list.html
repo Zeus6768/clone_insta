@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<div class="photolist-container">
+  <section class="photolist-container__main">
+    <div class="main-column">
+      {% for object in object_list %}
+      <article class="photolist-content">
+        <div class="photolist-content__header">
+          <div class="photolist-content__profile">
+            <img src="{% static 'images/profile.png' %}" alt="" class="profile-image">
+            <span><strong>{{ object.author }}</strong></span>
+          </div>
+          <div class="photolist-content__morebtn">
+            <button>
+              <img src="{% static 'images/more.svg' %}" alt="">
+            </button>
+          </div>
+        </div>
+        <div class="photolist-content__photo">
+          <img src="{{ object.image.url }}" alt="" class="card-img-top">
+        </div>
+        <div class="photolist-content__body">
+          <div class="content-body__actions">좋아요, 댓글, DM, 북마크</div>
+          <div class="content-body__likes">좋아요 000개</div>
+          <div class="content-body__text">
+            <strong>{{ object.author }}</strong> {{ object.text|truncatewords:20 }}
+          </div>
+          <div class="content-body__datetime">
+            <small>0시간 전</small>
+          </div>
+          <!-- <div class="content-body__reply">댓글 달기</div> -->
+          <a href="{% url 'photo:detail' object.id %}" class="card-link">댓글달기</a>
+          <a href="{% url 'photo:update' object.id %}" class="card-link">수정하기</a>
+          <a href="{% url 'photo:delete' object.id %}" class="card-link">삭제하기</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="side-column">
+      <div>myprofile</div>
+      <div>recommendation</div>
+    </div>
+  </section>
+</div>
+{% endblock %}

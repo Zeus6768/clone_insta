@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} Instagram {% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+
+<body>
+  <header class="header">
+    <nav class=navbar>
+      <div class="navbar-container">
+        <div class="navbar-container__left">
+          <div class="navbar-logo">
+            <a href="/"><img src="{% static 'images/logo_instagram.png' %}"></a>
+          </div>
+        </div>
+        <div class="navbar-container__middle">
+          <div class="navbar-searchbox">
+            <img src="{% static 'images/search.svg' %}" class="navbar-searchbox__search-image">
+            <input type="text" name="" placeholder="검색">
+          </div>
+        </div>
+        <div class="navbar-container__right">
+          <a href="{% url 'photo:index' %}">
+            <img src="{% static 'images/home.png' %}" class="navbar__menu navbar__menu-home">
+          </a>
+          <a href="">
+            <img src="{% static 'images/message.png' %}" class="navbar__menu navbar__menu-message">
+          </a>
+          <a href="">
+            <img src="{% static 'images/explore.png' %}" class="navbar__menu navbar__menu-explore">
+          </a>
+          <a href="">
+            <img src="{% static 'images/like.png' %}" class="navbar__menu navbar__menu-notice">
+          </a>
+          <a href="">
+            <img src="{% static 'images/profile.png' %}" class="navbar__menu navbar__menu-profile">
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  {% block content %}
+  {% endblock %}
+</body>
+
+</html>
