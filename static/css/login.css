@@ -1,0 +1,168 @@
+.login-container {
+	display: flex;
+	padding-top: 54px;
+	max-width: 935px;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.login-container__main {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.column-image {
+	width: 100%;
+	background-image: url("../images/home_phones.png");
+	background-size: 454px 618px;
+	flex-basis: 454px;
+	height: 618px;
+	background-repeat: no-repeat;
+	z-index: 1;
+}
+
+.column-image__container {
+	display: flex;
+	margin: 99px 0 0 151px;
+	position: relative;
+}
+
+.column-image__container image {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.column-menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 12px;
+	max-width: 350px;
+	background-color: rgba(255,255,255, 1);
+}
+
+.login {
+	position: relative;
+	width: 348px;
+	height: 380px;
+	border: 1px solid rgba(219,219,219,1);
+	margin: 0 0 10px;
+}
+
+.logo_login {
+	display: block;
+	background-image: url("../images/logo_instagram_login.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 22px auto 12px;
+	width: 175px;
+	height: 58px;
+}
+
+.login-menu {
+	display: flex;
+	margin-top: 24px;
+	justify-content: flex-start;
+	align-items: center;
+	flex: 0 0 auto;
+}
+
+.login-menu p {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-menu label {
+	display: none;
+}
+
+.login-menu input[type="text"],
+.login-menu input[type="password"] {
+	margin-bottom: 6px;
+	font-size: 16px;
+	width: 258px;
+	height: 36px;
+	padding: 9px 0 7px 8px;
+	background-color: rgba(250,250,250);
+	border: 1px solid rgba(219,219,219);
+    border-radius: 3px;
+}
+.login-menu input[type="text"]::placeholder,
+.login-menu input[type="password"]::placeholder {
+	font-size: 12px;
+	color: rgba(142,142,142,1);
+}
+
+.login-btn {
+	width: 268px;
+	height: 30px;
+	margin: 8px 40px;
+	border: none;
+	border-radius: 3px;
+	background-color: rgba(0,149,246);
+	color: rgba(255,255,255, 1);
+	font-weight: 600;
+}
+
+.alter-login__container {
+	display: flex;
+	flex-direction: row;
+	-webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;;
+	margin: 10px 40px 18px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.alter-login__hr {
+    background-color: #dbdbdb;
+    background-color: rgba(219,219,219,1);
+    height: 1px;
+    top: .45em;
+	width: 103px;
+}
+
+.alter-login__text{
+	color: #8e8e8e;
+    color: rgba(142,142,142,1);
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 15px;
+    margin: 0 18px;
+    text-transform: uppercase;
+}
+
+.fb-icon {
+	display: inline-block;
+	margin-right: 8px;
+	width: 16px;
+	height: 16px;
+	background-image: url('../images/icon_facebook.png');
+}
+
+.fb-text {
+	color: #385185;
+}
+
+.signup {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 350px;
+	height: 63px;
+	border: 1px solid rgba(219,219,219,1);
+}
+
+.signup-text {
+	padding-right: 5px;
+}

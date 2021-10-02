@@ -21,8 +21,11 @@
         </div>
         <div class="navbar-container__middle">
           <div class="navbar-searchbox">
-            <img src="{% static 'images/search.svg' %}" class="navbar-searchbox__search-image">
-            <input type="text" name="" placeholder="검색">
+            <input type="text" name="" placeholder="">
+            <div class="navbar-searchbox__placeholder">
+              <img src="{% static 'images/search.svg' %}" class="navbar-searchbox__image">
+              <span class="navbar-searchbox__text">검색</span>
+            </div>
           </div>
         </div>
         <div class="navbar-container__right">
@@ -41,13 +44,30 @@
           <a href="">
             <img src="{% static 'images/profile.png' %}" class="navbar__menu navbar__menu-profile">
           </a>
+          <a href="{% url 'accounts:login' %}" class="">로그인</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'accounts:logout' %}" class="">로그아웃</a>
+          <a href="{% url 'photo:create' %}">사진 올리기</a>
+          {% endif %}
         </div>
       </div>
     </nav>
   </header>
 
+  {% if messages %}
+  <div class="message">
+    {% for message in messages %}
+    <div class="message-content">
+      <p>{{ message }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
   {% block content %}
   {% endblock %}
+  {% endif %}
+
+  
 </body>
 
 </html>
