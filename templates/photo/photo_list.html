@@ -23,8 +23,21 @@
         <div class="photolist-content__photo">
           <img src="{{ object.image.url }}" alt="" class="card-img-top">
         </div>
-        <div class="photolist-content__body">
-          <div class="content-body__actions">좋아요, 댓글, DM, 북마크</div>
+        <div class="photolist-content__body flex-col">
+          <div class="content-body__actions">
+            <a href="">
+              <img src="{% static 'images/like.png' %}" alt="" >
+            </a>
+            <a href="">
+              <img src="{% static 'images/comment.png' %}" alt="">
+            </a>
+            <a href="">
+              <img src="{% static 'images/message.png' %}" alt="">
+            </a>
+            <a href="">
+
+            </a>
+          </div>
           <div class="content-body__likes">좋아요 000개</div>
           <div class="content-body__text">
             <strong>{{ object.author }}</strong> {{ object.text|truncatewords:20 }}
@@ -43,8 +56,8 @@
       {% endfor %}
     </div>
     <div class="side-column">
-      <div>myprofile</div>
-      <div>recommendation</div>
+      <!-- <div>myprofile</div>
+      <div>recommendation</div> -->
     </div>
   </section>
 </div>

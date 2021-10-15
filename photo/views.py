@@ -1,10 +1,11 @@
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from .models import Photo
 from django.contrib import messages
+from urllib.parse import urlparse
 
 # Create your views here.
 
@@ -59,3 +60,21 @@ class PhotoDetail(DetailView):
     fields = ['text', 'image']
     template_name_suffix = '_detail'
     success_url = '/'
+
+
+class PhotoLike(View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+        else:
+            if 'photo_id' in kwargs:
+                photo_id = kwargs['photo_id']
+                photo = Photo.objects.get(pk=photo_id)
+                user = request.user
+                if user in photo.like.all():
+                    photo.like.remove(user)
+                else:
+                    photo.like.add(user)
+            referer_url = request.META.get('HTTP_REFERER')
+            path = urlparse(referer_url).path
+            return HttpResponseRedirect(path)

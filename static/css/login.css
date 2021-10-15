@@ -1,3 +1,16 @@
+a, 
+a:visited {
+	text-decoration: none;
+	color: #0095f6;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
 .login-container {
 	display: flex;
 	padding-top: 54px;
@@ -67,21 +80,23 @@
 
 .login-menu {
 	display: flex;
-	margin-top: 24px;
+	margin-top: 8px;
 	justify-content: flex-start;
 	align-items: center;
 	flex: 0 0 auto;
 }
 
-.login-menu p {
+.login-menu form {
+	margin-bottom: 8px;
+}
+
+.login-menu__p {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-}
-
-.login-menu label {
-	display: none;
+	margin-top: 12px;
+	margin-bottom: 0;
 }
 
 .login-menu input[type="text"],
@@ -142,6 +157,12 @@
     text-transform: uppercase;
 }
 
+.fb-login__container a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .fb-icon {
 	display: inline-block;
 	margin-right: 8px;
@@ -152,6 +173,16 @@
 
 .fb-text {
 	color: #385185;
+}
+
+.find-password {
+	color: rgba(0,55,107,1);
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 20px;
+    text-align: center;
+	text-decoration: none;
+	font-weight: 200;
 }
 
 .signup {
@@ -165,4 +196,26 @@
 
 .signup-text {
 	padding-right: 5px;
+}
+
+/* footer */
+
+.login-footer {
+	justify-content: center;
+	align-items: center;
+	color: rgba(142,142,142,1);
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 14px;
+	margin-top: 32px;
+}
+
+.login-footer__line {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-footer span {
+	margin: 0 8px 12px;
 }
