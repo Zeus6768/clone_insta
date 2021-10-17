@@ -191,14 +191,32 @@ header {
 }
 
 .photolist-content__body {
-	padding: 15px;
+	padding: 16px;
 }
 
-.photolist-content__body img {
+.content-body__actions {
+	display: flex;
+	align-items: stretch;
+}
+
+.photolist-content__body .content-body__btn {
+	display: inline-block;
+	margin: 0px 8px;
 	width: 24px; 
 	height: 24px;
+	overflow: hidden;
+	border: none;
 }
 
+.photolist-content__body .btn-like {
+	background: url(../images/sprite.png);
+	background-repeat: no-repeat;
+	background-position: -254px -156px;
+}
+
+.photolist-content__body .btn-favorite {
+	margin-left: auto;
+}
 
 .side-column {
 	position: fixed;
