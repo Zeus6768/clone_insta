@@ -25,20 +25,17 @@
         </div>
         <div class="photolist-content__body flex-col">
           <div class="content-body__actions">
-            <a href="">
+            <a href="{% url 'photo:like' object.id %}" class="{% if user in object.like.all %} active {% endif %}">
               <img src="{% static 'images/like.png' %}" alt="" >
             </a>
-            <a href="">
+            <a href="{% url 'photo:detail' object.id %}" class="{% if user in object.like.all %} active {% endif %}">
               <img src="{% static 'images/comment.png' %}" alt="">
             </a>
-            <a href="">
+            <a href="" class="{% if user in object.like.all %} active {% endif %}">
               <img src="{% static 'images/message.png' %}" alt="">
             </a>
-            <a href="">
-
-            </a>
           </div>
-          <div class="content-body__likes">좋아요 000개</div>
+          <div class="content-body__likes">좋아요 {{ object.like.all.count }}개</div>
           <div class="content-body__text">
             <strong>{{ object.author }}</strong> {{ object.text|truncatewords:20 }}
           </div>
